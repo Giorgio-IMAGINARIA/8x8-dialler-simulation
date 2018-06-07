@@ -1,0 +1,48 @@
+#main-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content:center;
+}
+#dialler-wrapper{
+    width:50%;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+}
+.dialler-box{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+#number-box{
+    background-color: #242e3d;
+}
+#touchpad-box{
+    background-color: #2c3a4c;
+}
+#button-box{
+    background-color: #37485f;
+}
+#number-text{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20pt;
+    margin: 50px 0 50px;
+}
+#main-button{
+    width: 122px;
+    height: 35px;
+    background-color: #3fac5b;
+    margin: 30px 0 30px;
+    border-radius: 3px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+#main-button-text{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10pt;
+    margin: 0;
+}
