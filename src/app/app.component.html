@@ -8,56 +8,50 @@
 
     </div>
     <div id="touchpad-box" class="dialler-box">
-
       <div class="touchpad-row grey-bottom-bordered-div">
-        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" >
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button1Clicked }">
           <p class="standard-text touchpad-number">1</p>
         </div>
-        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button2Clicked }">
           <p class="standard-text touchpad-number">2</p>
         </div>
-        <div class="touchpad-cell">
+        <div class="touchpad-cell" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button3Clicked }">
           <p class="standard-text touchpad-number">3</p>
         </div>
       </div>
       <div class="touchpad-row grey-bottom-bordered-div">
-        <div class="touchpad-cell grey-right-bordered-div">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button4Clicked }">
           <p class="standard-text touchpad-number">4</p>
         </div>
-        <div class="touchpad-cell grey-right-bordered-div">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button5Clicked }">
           <p class="standard-text touchpad-number">5</p>
         </div>
-        <div class="touchpad-cell">
+        <div class="touchpad-cell" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button6Clicked }">
           <p class="standard-text touchpad-number">6</p>
         </div>
       </div>
       <div class="touchpad-row grey-bottom-bordered-div">
-        <div class="touchpad-cell grey-right-bordered-div">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button7Clicked }">
           <p class="standard-text touchpad-number">7</p>
         </div>
-        <div class="touchpad-cell grey-right-bordered-div">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button8Clicked }">
           <p class="standard-text touchpad-number">8</p>
         </div>
-        <div class="touchpad-cell">
+        <div class="touchpad-cell" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button9Clicked }">
           <p class="standard-text touchpad-number">9</p>
         </div>
       </div>
       <div class="touchpad-row grey-bottom-bordered-div">
-        <div class="touchpad-cell grey-right-bordered-div">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': buttonStarClicked }">
           <p class="standard-text touchpad-number">*</p>
         </div>
-        <div class="touchpad-cell grey-right-bordered-div">
+        <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': button0Clicked }">
           <p class="standard-text touchpad-number">0</p>
         </div>
-        <div class="touchpad-cell">
+        <div class="touchpad-cell" (click)="touchPadButtonClicked($event)" [ngClass]="{'clicked': buttonHashClicked }">
           <p class="standard-text touchpad-number">#</p>
         </div>
       </div>
-
-
-
-
-
     </div>
     <div id="button-box" class="dialler-box">
       <div id="main-button" class="main-button-disabled">
@@ -65,11 +59,6 @@
           Dial
         </p>
       </div>
-
     </div>
-
-
   </div>
-
-
 </div>

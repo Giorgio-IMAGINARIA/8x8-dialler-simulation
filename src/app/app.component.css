@@ -17,7 +17,7 @@
 }
 #number-box{
     background-color: #242e3d;
-    height: 120px;
+    min-height: 120px;
 }
 #touchpad-box{
     background-color: #2c3a4c;
@@ -29,6 +29,8 @@
 #number-text{
     color: #ffffff;
     font-size: 20pt;
+    word-break: break-all;
+    white-space: normal;
 }
 #main-button{
     width: 122px;
@@ -48,14 +50,14 @@
     background-color: #3fac5b;
 }
 .main-button-enabled-dial:hover{
-    background-color:#54be78
+    background-color:#54be78;
 }
 .main-button-enabled-hangup{
     cursor: pointer;
     background-color: #d24727;
 }
 .main-button-enabled-hangup:hover{
-    background-color:#e1613f
+    background-color:#e1613f;
 }
 #main-button-text{
     color: #ffffff;
@@ -75,7 +77,7 @@
     cursor: pointer;
 }
 .touchpad-cell:hover{
-    background-color: #3e5064;
+    box-shadow: 0 0 1px 3px #ffffff inset;
 }
 .touchpad-number{
     color: #ffffff;
@@ -89,7 +91,10 @@
     border-bottom: 3px solid #4b5b6f;
 }
 .grey-right-bordered-div{
-    border-right: 3px solid #4b5b6f
+    border-right: 3px solid #4b5b6f;
+}
+.clicked{
+    background-color: #242e3d;
 }
 @media only screen and (max-width: 736px) {
     #dialler-wrapper{
