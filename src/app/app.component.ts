@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   private mainButtonDial: boolean;
   private mainButtonHangup: boolean;
   private mainDialButtonClickedState: boolean;
+  private mainHangupButtonClickedState: boolean;
   private dialledNumber: string;
   private button1Clicked: boolean;
   private button2Clicked: boolean;
@@ -24,16 +25,23 @@ export class AppComponent implements OnInit {
   private buttonStarClicked: boolean;
   private button0Clicked: boolean;
   private buttonHashClicked: boolean;
+  private mainButtonText: string;
+  private showDialler: boolean;
+  private timePassed: string;
   ngOnInit(): void {
     this.initialiseDialler();
   }
 
   private initialiseDialler(): void {
+    this.timePassed = '00';
+    this.showDialler = true;
+    this.mainButtonText = 'Dial';
     this.mainButtonEnabled = false;
     this.mainButtonDisabled = true;
     this.mainButtonDial = false;
     this.mainButtonHangup = false;
     this.mainDialButtonClickedState = false;
+    this.mainHangupButtonClickedState = false;
     this.dialledNumber = '';
     this.initialiseTouchpad();
   }
@@ -57,21 +65,28 @@ export class AppComponent implements OnInit {
       case 'D':
         this.mainDialButtonClickedState = true;
         setTimeout(() => {
+          this.showDialler = false;
           this.mainDialButtonClickedState = false;
+          this.mainButtonDial = false;
           this.mainButtonHangup = true;
+          this.mainButtonText = 'Hangup';
         }, 200);
         break;
       case 'H':
-        this.mainDialButtonClickedState = false;
+        this.mainHangupButtonClickedState = true;
         setTimeout(() => {
-          this.mainDialButtonClickedState = false;
+          this.showDialler = true;
+          this.mainHangupButtonClickedState = false;
+          this.mainButtonHangup = false;
+          this.mainButtonEnabled = false;
+          this.mainButtonDisabled = true;
+          this.mainButtonText = 'Dial';
+          this.dialledNumber = '';
         }, 200);
         break;
       default:
         throw ('app.component - mainButtonClicked() error');
     }
-
-    this.mainDialButtonClickedState = true;
   }
 
   private touchPadButtonClicked(event: any): void {

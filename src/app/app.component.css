@@ -12,12 +12,10 @@
 .dialler-box{
     width: 100%;
     display: flex;
-    justify-content:center;
-    align-items: center;
 }
 #number-box{
     background-color: #242e3d;
-    min-height: 120px;
+    flex-direction: column;
 }
 #touchpad-box{
     background-color: #2c3a4c;
@@ -25,6 +23,8 @@
 }
 #button-box{
     background-color: #37485f;
+    align-items: center;
+    justify-content:center;
 }
 #number-text{
     color: #ffffff;
@@ -91,11 +91,30 @@
 .grey-right-bordered-div{
     border-right: 3px solid #4b5b6f;
 }
-.clicked{
+.touchpadClicked{
     background-color: #242e3d;
+    font-weight: 600;
 }
 .mainDialButtonClickedClass{
     background-color: #3d8957;
+}
+.mainHangupButtonClickedClass{
+    background-color: #a54832;
+}
+#call-time-wrap{
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+    justify-content:center;
+    align-items: center;
+}
+#call-time-text{
+    color: #ffffff;
+}
+#call-number-wrap{
+    min-height: 70px;
+    display: flex;
+    justify-content:center;
 }
 @media only screen and (max-width: 736px) {
     #dialler-wrapper{
