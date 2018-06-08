@@ -2,7 +2,7 @@
   <div id="dialler-wrapper">
     <div id="number-box" class="dialler-box grey-bottom-bordered-div">
       <div id="call-time-wrap">
-        <p id="call-time-text" class="standard-text">
+        <p *ngIf="showCallTime" id="call-time-text" class="standard-text">
           Call time: 00:00:{{timePassed}}
         </p>
       </div>

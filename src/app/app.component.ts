@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
   private mainButtonText: string;
   private showDialler: boolean;
   private timePassed: string;
+  private timeCounter: any;
+  private showCallTime: boolean;
   ngOnInit(): void {
     this.initialiseDialler();
   }
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
     this.mainHangupButtonClickedState = false;
     this.dialledNumber = '';
     this.initialiseTouchpad();
+    this.showCallTime = false;
   }
   private initialiseTouchpad(): void {
     this.button1Clicked = false;
@@ -59,6 +62,31 @@ export class AppComponent implements OnInit {
     this.button0Clicked = false;
     this.buttonHashClicked = false;
   }
+  private startCall(): void {
+    this.showCallTime = true;
+    let counter: number = 0;
+    this.timeCounter = setInterval(() => {
+      counter++;
+      this.timePassed = counter < 10 ? `0${counter}` : `10`;
+      console.log("Hello");
+      if (counter === 10) this.terminateCall();
+    }, 1000)
+  }
+  private terminateCall(): void {
+    if (this.timeCounter) {
+      clearInterval(this.timeCounter);
+      this.timeCounter = null;
+    }
+    this.showDialler = true;
+    this.mainHangupButtonClickedState = false;
+    this.mainButtonHangup = false;
+    this.mainButtonEnabled = false;
+    this.mainButtonDisabled = true;
+    this.mainButtonText = 'Dial';
+    this.dialledNumber = '';
+    this.showCallTime = false;
+    this.timePassed = '00';
+  }
   private mainButtonClicked(event: any): void {
     const mainButtonClickValue: any = event.path[0].innerText[0]
     switch (mainButtonClickValue) {
@@ -70,18 +98,14 @@ export class AppComponent implements OnInit {
           this.mainButtonDial = false;
           this.mainButtonHangup = true;
           this.mainButtonText = 'Hangup';
+          this.startCall();
         }, 200);
         break;
       case 'H':
         this.mainHangupButtonClickedState = true;
+        clearInterval(this.timeCounter)
         setTimeout(() => {
-          this.showDialler = true;
-          this.mainHangupButtonClickedState = false;
-          this.mainButtonHangup = false;
-          this.mainButtonEnabled = false;
-          this.mainButtonDisabled = true;
-          this.mainButtonText = 'Dial';
-          this.dialledNumber = '';
+          this.terminateCall();
         }, 200);
         break;
       default:
