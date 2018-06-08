@@ -54,7 +54,7 @@
       </div>
     </div>
     <div id="button-box" class="dialler-box">
-      <div id="main-button" class="main-button-disabled">
+      <div id="main-button" (click)="mainButtonClicked($event)" [ngClass]="{'main-button-disabled': mainButtonDisabled, 'main-button-enabled':mainButtonEnabled, 'main-button-dial': mainButtonDial, 'mainDialButtonClickedClass': mainDialButtonClickedState, 'main-button-hangup': mainButtonHangup}">
         <p id="main-button-text" class="standard-text">
           Dial
         </p>

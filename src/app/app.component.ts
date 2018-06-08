@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  private mainButtonDisabled: boolean;
+  private mainButtonEnabled: boolean;
+  private mainButtonDial: boolean;
+  private mainButtonHangup: boolean;
+  private mainDialButtonClickedState: boolean;
   private dialledNumber: string;
   private button1Clicked: boolean;
   private button2Clicked: boolean;
@@ -24,6 +29,11 @@ export class AppComponent implements OnInit {
   }
 
   private initialiseDialler(): void {
+    this.mainButtonEnabled = false;
+    this.mainButtonDisabled = true;
+    this.mainButtonDial = false;
+    this.mainButtonHangup = false;
+    this.mainDialButtonClickedState = false;
     this.dialledNumber = '';
     this.initialiseTouchpad();
   }
@@ -41,10 +51,35 @@ export class AppComponent implements OnInit {
     this.button0Clicked = false;
     this.buttonHashClicked = false;
   }
+  private mainButtonClicked(event: any): void {
+    const mainButtonClickValue: any = event.path[0].innerText[0]
+    switch (mainButtonClickValue) {
+      case 'D':
+        this.mainDialButtonClickedState = true;
+        setTimeout(() => {
+          this.mainDialButtonClickedState = false;
+          this.mainButtonHangup = true;
+        }, 200);
+        break;
+      case 'H':
+        this.mainDialButtonClickedState = false;
+        setTimeout(() => {
+          this.mainDialButtonClickedState = false;
+        }, 200);
+        break;
+      default:
+        throw ('app.component - mainButtonClicked() error');
+    }
 
-  private touchPadButtonClicked(event): void {
+    this.mainDialButtonClickedState = true;
+  }
+
+  private touchPadButtonClicked(event: any): void {
     const clickedButton: any = event.path[0].innerText[0];
     this.dialledNumber = this.dialledNumber + clickedButton;
+    this.mainButtonDisabled = false;
+    this.mainButtonEnabled = true;
+    this.mainButtonDial = true;
     switch (clickedButton) {
       case '1':
         this.button1Clicked = true;
