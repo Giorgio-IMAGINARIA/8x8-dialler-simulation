@@ -1,0 +1,147 @@
+#main-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content:center;
+}
+#dialler-wrapper{
+    width:50%;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+}
+.dialler-box{
+    width: 100%;
+    display: flex;
+}
+#number-box{
+    background-color: #242e3d;
+    flex-direction: column;
+}
+#touchpad-box{
+    background-color: #2c3a4c;
+    flex-direction: column;
+}
+#button-box{
+    background-color: #37485f;
+    align-items: center;
+    justify-content:center;
+}
+#number-text{
+    color: #ffffff;
+    font-size: 20pt;
+    word-break: break-all;
+    white-space: normal;
+}
+#main-button{
+    width: 122px;
+    height: 35px;
+    margin: 30px 0 30px;
+    border-radius: 3px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.main-button-disabled{
+    background-color: #919191;
+    cursor: not-allowed;
+}
+.main-button-enabled{
+    cursor: pointer;
+}
+.main-button-enabled:hover{
+    box-shadow: 0 0 1px 1px #ffffff inset;
+}
+.main-button-dial{
+    background-color: #3fac5b;
+}
+.main-button-hangup{
+    background-color: #d24727;
+}
+#main-button-text{
+    color: #ffffff;
+    font-size: 10pt;
+}
+.touchpad-row{
+    width:100%;
+    height: 100px;
+    display: flex;
+}
+.touchpad-cell{
+    display: flex;
+    flex-grow: 1;
+    height: inherit;
+    justify-content:center;
+    align-items: center;
+    cursor: pointer;
+}
+.touchpad-cell:hover{
+    box-shadow: 0 0 1px 3px #ffffff inset;
+}
+.touchpad-number{
+    color: #ffffff;
+    font-size: 15pt;
+}
+.standard-text{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+.grey-bottom-bordered-div{
+    border-bottom: 3px solid #4b5b6f;
+}
+.grey-right-bordered-div{
+    border-right: 3px solid #4b5b6f;
+}
+.touchpadClicked{
+    background-color: #242e3d;
+    font-weight: 600;
+}
+.mainDialButtonClickedClass{
+    background-color: #3d8957;
+}
+.mainHangupButtonClickedClass{
+    background-color: #a54832;
+}
+#call-time-wrap{
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+    justify-content:center;
+    align-items: center;
+}
+#call-time-text{
+    color: #ffffff;
+}
+#call-number-wrap{
+    min-height: 70px;
+    display: flex;
+    justify-content:center;
+}
+#reportBox{
+    width: 100%;
+    display: flex;
+    background-color: #2c3a4c;
+    flex-direction: column;
+    color:#ffffff;
+}
+.report-text-section{
+    text-indent: 10px;
+}
+.report-text-inner{
+    text-indent: 20px;
+}
+.report-section{
+    margin: 10px 0 10px;
+}
+.list-row{
+    margin-top: 10px;
+}
+.report-text{
+    font-size: 12pt;
+    word-break: break-all;
+    white-space: normal;
+}
+@media only screen and (max-width: 736px) {
+    #dialler-wrapper{
+        width:100%;
+    }
+}
