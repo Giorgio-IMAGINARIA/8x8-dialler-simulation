@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+interface callElement {
+  id: string,
+  totCalls: number
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,11 +35,13 @@ export class AppComponent implements OnInit {
   private timePassed: string;
   private timeCounter: any;
   private showCallTime: boolean;
+  private callsArray: Array<callElement>;
   ngOnInit(): void {
     this.initialiseDialler();
   }
 
   private initialiseDialler(): void {
+    this.callsArray = [];
     this.timePassed = '00';
     this.showDialler = true;
     this.mainButtonText = 'Dial';
@@ -68,7 +75,6 @@ export class AppComponent implements OnInit {
     this.timeCounter = setInterval(() => {
       counter++;
       this.timePassed = counter < 10 ? `0${counter}` : `10`;
-      console.log("Hello");
       if (counter === 10) this.terminateCall();
     }, 1000)
   }
@@ -87,11 +93,26 @@ export class AppComponent implements OnInit {
     this.showCallTime = false;
     this.timePassed = '00';
   }
+  private addCall(): void {
+const newElement: callElement = {
+  id: this.dialledNumber,
+  totCalls: 1
+}
+
+
+    if (this.callsArray.length === 0) {
+      this.callsArray.push(newElement)
+    } else {
+      const elementIndex: number = this.callsArray.findIndex((element: callElement): boolean => element.id === this.dialledNumber);
+      elementIndex > -1 ? this.callsArray[elementIndex].totCalls++ : this.callsArray.push(newElement)
+    }
+  }
   private mainButtonClicked(event: any): void {
     const mainButtonClickValue: any = event.path[0].innerText[0]
     switch (mainButtonClickValue) {
       case 'D':
         this.mainDialButtonClickedState = true;
+        this.addCall();
         setTimeout(() => {
           this.showDialler = false;
           this.mainDialButtonClickedState = false;
@@ -99,14 +120,14 @@ export class AppComponent implements OnInit {
           this.mainButtonHangup = true;
           this.mainButtonText = 'Hangup';
           this.startCall();
-        }, 200);
+        }, 100);
         break;
       case 'H':
         this.mainHangupButtonClickedState = true;
         clearInterval(this.timeCounter)
         setTimeout(() => {
           this.terminateCall();
-        }, 200);
+        }, 100);
         break;
       default:
         throw ('app.component - mainButtonClicked() error');
