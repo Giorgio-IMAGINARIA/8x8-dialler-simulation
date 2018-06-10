@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   private showReport: boolean;
   private mostCalledArrayElements: Array<callElement>;
   private totalCallsEver: number;
+
   ngOnInit(): void {
     this.initialiseDialler();
   }
@@ -61,6 +62,7 @@ export class AppComponent implements OnInit {
     this.initialiseTouchpad();
     this.showCallTime = false;
   }
+
   private initialiseTouchpad(): void {
     this.button1Clicked = false;
     this.button2Clicked = false;
@@ -75,6 +77,7 @@ export class AppComponent implements OnInit {
     this.button0Clicked = false;
     this.buttonHashClicked = false;
   }
+
   private startCall(): void {
     this.showCallTime = true;
     let counter: number = 0;
@@ -84,14 +87,15 @@ export class AppComponent implements OnInit {
       if (counter === 10) this.terminateCall();
     }, 1000)
   }
+
   private showCallsAndRestart(): void {
     this.showReport = true;
     setTimeout(() => {
       this.showDialler = true;
       this.showReport = false;
-    }, 30000);
-
+    }, 2000);
   }
+
   private terminateCall(): void {
     if (this.timeCounter) {
       clearInterval(this.timeCounter);
@@ -107,6 +111,7 @@ export class AppComponent implements OnInit {
     this.showCallTime = false;
     this.timePassed = '00';
   }
+
   private addCall(): void {
     const newElement: callElement = {
       id: this.dialledNumber,
@@ -116,33 +121,21 @@ export class AppComponent implements OnInit {
       this.callsArray.push(newElement)
     } else {
       const elementIndex: number = this.callsArray.findIndex((element: callElement): boolean => element.id === this.dialledNumber);
-      elementIndex > -1 ? this.callsArray[elementIndex].totCalls++ : this.callsArray.push(newElement)
+      elementIndex > -1 ? this.callsArray[elementIndex].totCalls++ : this.callsArray.push(newElement);
     }
   }
+
   private updateReport() {
-    this.mostCalledArrayElements = [{
-      id: 't353453453',
-      totCalls: 34
-    }, {
-      id: 't353453453',
-      totCalls: 34
-    }, {
-      id: 't353453453',
-      totCalls: 34
-    }];
-    this.totalCallsEver = 40;
+    this.mostCalledArrayElements = this.callsArray.sort(function (a, b) { return (a.totCalls > b.totCalls) ? 1 : ((b.totCalls > a.totCalls) ? -1 : 0); }).slice(0, 3);
+    this.totalCallsEver = this.callsArray.map(item => item.totCalls).reduce((prev, next) => prev + next);
   }
+
   private mainButtonClicked(event: any): void {
     const mainButtonClickValue: any = event.path[0].innerText[0]
     switch (mainButtonClickValue) {
       case 'D':
         this.mainDialButtonClickedState = true;
         this.addCall();
-
-
-
-
-
         setTimeout(() => {
           this.showDialler = false;
           this.mainDialButtonClickedState = false;
