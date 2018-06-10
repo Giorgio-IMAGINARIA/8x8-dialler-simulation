@@ -12,6 +12,20 @@
         </p>
       </div>
     </div>
+    <div *ngIf="showReport" id="reportBox" class="grey-bottom-bordered-div">
+      <div class="report-section">
+        <p class="standard-text report-text report-text-section">Total calls ever: {{totalCallsEver}}</p>
+      </div>
+      <div class="report-section">
+        <div>
+          <p class="standard-text report-text report-text-section">Three most called numbers:</p>
+        </div>
+        <div *ngFor="let element of mostCalledArrayElements" class="list-row">
+          <p class="standard-text report-text report-text-inner">number: {{element.id}}</p>
+          <p class="standard-text report-text report-text-inner">total calls: {{element.totCalls}}</p>
+        </div>
+      </div>
+    </div>
     <div *ngIf="showDialler" id="touchpad-box" class="dialler-box">
       <div class="touchpad-row grey-bottom-bordered-div">
         <div class="touchpad-cell grey-right-bordered-div" (click)="touchPadButtonClicked($event)" [ngClass]="{'touchpadClicked': button1Clicked }">

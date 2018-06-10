@@ -36,11 +36,17 @@ export class AppComponent implements OnInit {
   private timeCounter: any;
   private showCallTime: boolean;
   private callsArray: Array<callElement>;
+  private showReport: boolean;
+  private mostCalledArrayElements: Array<callElement>;
+  private totalCallsEver: number;
   ngOnInit(): void {
     this.initialiseDialler();
   }
 
   private initialiseDialler(): void {
+    this.totalCallsEver = 0;
+    this.mostCalledArrayElements = [];
+    this.showReport = false;
     this.callsArray = [];
     this.timePassed = '00';
     this.showDialler = true;
@@ -78,12 +84,20 @@ export class AppComponent implements OnInit {
       if (counter === 10) this.terminateCall();
     }, 1000)
   }
+  private showCallsAndRestart(): void {
+    this.showReport = true;
+    setTimeout(() => {
+      this.showDialler = true;
+      this.showReport = false;
+    }, 30000);
+
+  }
   private terminateCall(): void {
     if (this.timeCounter) {
       clearInterval(this.timeCounter);
       this.timeCounter = null;
     }
-    this.showDialler = true;
+    this.showCallsAndRestart();
     this.mainHangupButtonClickedState = false;
     this.mainButtonHangup = false;
     this.mainButtonEnabled = false;
@@ -94,12 +108,10 @@ export class AppComponent implements OnInit {
     this.timePassed = '00';
   }
   private addCall(): void {
-const newElement: callElement = {
-  id: this.dialledNumber,
-  totCalls: 1
-}
-
-
+    const newElement: callElement = {
+      id: this.dialledNumber,
+      totCalls: 1
+    };
     if (this.callsArray.length === 0) {
       this.callsArray.push(newElement)
     } else {
@@ -107,12 +119,30 @@ const newElement: callElement = {
       elementIndex > -1 ? this.callsArray[elementIndex].totCalls++ : this.callsArray.push(newElement)
     }
   }
+  private updateReport() {
+    this.mostCalledArrayElements = [{
+      id: 't353453453',
+      totCalls: 34
+    }, {
+      id: 't353453453',
+      totCalls: 34
+    }, {
+      id: 't353453453',
+      totCalls: 34
+    }];
+    this.totalCallsEver = 40;
+  }
   private mainButtonClicked(event: any): void {
     const mainButtonClickValue: any = event.path[0].innerText[0]
     switch (mainButtonClickValue) {
       case 'D':
         this.mainDialButtonClickedState = true;
         this.addCall();
+
+
+
+
+
         setTimeout(() => {
           this.showDialler = false;
           this.mainDialButtonClickedState = false;
@@ -123,6 +153,7 @@ const newElement: callElement = {
         }, 100);
         break;
       case 'H':
+        this.updateReport();
         this.mainHangupButtonClickedState = true;
         clearInterval(this.timeCounter)
         setTimeout(() => {
